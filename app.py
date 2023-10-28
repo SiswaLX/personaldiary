@@ -11,9 +11,11 @@ from datetime import datetime
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-connection_string = "mongodb+srv://datahiduppenting:123@cluster0.6vtvnuf.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(connection_string)
-db = client.dbsparta
+MONGODB_URI = os.environ.get("MONGODB_URI")
+DB_NAME = os.environ.get("DB_NAME")
+
+client = MongoClient(MONGODB_URI)
+db = client[DB_NAME]
 
 app = Flask(__name__)
 
